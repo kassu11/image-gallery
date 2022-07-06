@@ -1,5 +1,8 @@
 console.log("??");
 
+
+
+
 if(location.search.length === 0) {
 	const textarea = document.createElement("textarea");
 	textarea.placeholder = "https://i.imgur.com/123abc.png\nhttps://i.ibb.co/456def/name.jpg"
@@ -9,7 +12,10 @@ if(location.search.length === 0) {
 	button.addEventListener("click", e => {
 		location.hash = 1;
 		location.search = textarea.value.split("\n").join("&");
+		// window.history.pushState(null, null, "?" + textarea.value.split("\n").join("&"));
 	});
+
+	textarea.addEventListener("input", typeInTextArea)
 
 	document.body.append(textarea, button);
 } else {
@@ -51,11 +57,19 @@ if(location.search.length === 0) {
 	updateImage();
 	
 	function updateImage() {
-		document.querySelector("img")?.remove();
-		const image = document.createElement("img");
-		container.before(image);
-		image.src = images[index - 1];
-		location.hash = index;
-		loadedImages[index - 1] = image;
+		const img = document.querySelector(".preview img");
+		if(img) document.querySelector("#hideLoadedImages").append(img);
+
+		if(loadedImages[index - 1]) {
+			document.querySelector(".preview").append(loadedImages[index - 1]);
+		} else {
+			const image = document.createElement("img");
+			image.src = images[index - 1];
+			document.querySelector(".preview").append(image);
+			loadedImages[index - 1] = image;
+		}
+		
+		window.history.replaceState(null, null, location.search + "#" + index);
 	}
 }
+

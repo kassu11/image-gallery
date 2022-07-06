@@ -9,7 +9,27 @@ body {
 	}
 
 	img {
-		max-height: 100%;
-		max-width: 100%;
+		max-height: calc(100vh - 16px);
+		max-width: calc(100vw - 16px);
+		object-fit: cover;
+	}
+}
+
+#hideLoadedImages {
+	display: none;
+}
+
+.textareaImgPreview {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 5px;
+	overflow-y: auto;
+	max-height: 300px;
+
+	img {
+		width: 100px;
+		height: 100px;
+		object-fit: cover;
+		user-select: none;
 	}
 }

@@ -4,8 +4,6 @@ console.log("??");
 
 
 if(location.search.length === 0) {
-	const textarea = document.createElement("textarea");
-	textarea.placeholder = "https://i.imgur.com/123abc.png\nhttps://i.ibb.co/456def/name.jpg"
 	
 	const button = document.createElement("button");
 	button.textContent = "Create";
@@ -15,10 +13,15 @@ if(location.search.length === 0) {
 		// window.history.pushState(null, null, "?" + textarea.value.split("\n").join("&"));
 	});
 
-	textarea.addEventListener("input", typeInTextArea)
+	textarea.addEventListener("input", e => typeInTextArea(false))
 
-	document.body.append(textarea, button);
+	document.body.append(button);
 } else {
+	// remove later
+	textarea.remove();
+	document.querySelector(".textareaImgPreviewTools").remove();
+
+
 	const loadedImages = [];
 	const images = location.search.substring(1).split("&");
 	if(location.hash.length === 0) location.hash = 1;

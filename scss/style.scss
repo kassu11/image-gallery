@@ -26,10 +26,34 @@ body {
 	overflow-y: auto;
 	max-height: 300px;
 
-	img {
-		width: 100px;
-		height: 100px;
-		object-fit: cover;
-		user-select: none;
+	.prevImage {
+		position: relative;
+		cursor: grab;
+
+		&.selected .selection  {
+			background-color: lime;
+		}
+
+		img {
+			width: 100px;
+			height: 100px;
+			object-fit: cover;
+			user-select: none;
+			pointer-events: none;
+		}
+	
+		.selection {
+			position: absolute;
+			width: 18px;
+			height: 18px;
+			background-color: rgb(255, 255, 255);
+			border: 2px solid rgb(44, 44, 44);
+			box-shadow: inset 0 0 4px #0000009e;
+			right: 5px;
+			top: 5px;
+			border-radius: 5px;
+			cursor: pointer;
+		}
 	}
+
 }

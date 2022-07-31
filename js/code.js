@@ -1,4 +1,9 @@
 let imageLoaded = false;
+const correctUrl = decodeURI(location.href)
+if(location.href !== correctUrl) {
+	location.replace(correctUrl);
+}
+
 
 if(location.search.length === 0) {
 	const button = document.createElement("button");

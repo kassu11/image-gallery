@@ -8,17 +8,34 @@
 		<title>Image gallery</title>
 	</head>
 	<body>
-		<div class="textareaImgPreview"></div>
-		<div class="textareaImgPreviewTools">
-			<button>reverse</button>
+		<div class="imageRowContainer">
+			<div class="header">
+				<p>Image count</p>
+				<div class="qualityRows">
+					<div>
+						<p>Low quality</p>
+						<button>Delete</button>
+					</div>
+					<i class="gg-swap"></i>
+					<div>
+						<p>Medium quality</p>
+						<button>Delete</button>
+					</div>
+					<i class="gg-swap"></i>
+					<div>
+						<p>High quality</p>
+						<button>Delete</button>
+					</div>
+				</div>
+			</div>
 		</div>
-		<textarea cols="30" rows="10" placeholder="https://i.imgur.com/123abc.png
-https://i.ibb.co/456def/name.jpg"></textarea>
+		
 		<div class="preview"></div>
 		<div id="hideLoadedImages"></div>
 	</body>
 </html>
 
+<script src="./js/shuffle.js"></script>
 <script src="./js/previewImages.js"></script>
 <script src="./js/imageLoading.js"></script>
 <script src="./js/textarea.js"></script>

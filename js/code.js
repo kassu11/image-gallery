@@ -4,7 +4,6 @@ if(location.href !== correctUrl) {
 	location.replace(correctUrl);
 }
 
-
 if(location.search.length === 0) {
 	const button = document.createElement("button");
 	button.textContent = "Create";
@@ -31,19 +30,13 @@ if(location.search.length === 0) {
 	document.querySelector(".imageRowContainer").remove();
 	if(location.hash.length === 0) location.hash = "index=1";
 	else {
-		location.hash.split("&").forEach(value => {
+		location.hash.substring(1).split("&").forEach(value => {
 			if(value.startsWith("index=")) {
 				index = parseInt(value.substring(6));
 			} else if(value === "shuffle") shuffle = true;
 		});
 	}
 
-	const container = document.createElement("div");
-	const left = document.createElement("button");
-	const right = document.createElement("button");
-	container.append(left, right);
-	left.textContent = "<";
-	right.textContent = ">";
 
 	window.addEventListener("keydown", e => {
 		const lastIndex = index;
@@ -59,17 +52,6 @@ if(location.search.length === 0) {
 		if(lastIndex !== index) updateImage();
 	})
 
-	left.addEventListener("click", e => {
-		if(--index < 1) index = images.length;
-		updateImage();
-	});
-
-	right.addEventListener("click", e => {
-		if(++index > images.length) index = 1;
-		updateImage();
-	});
-
-	document.body.append(container);
 	updateImage();
 	
 	function updateImage() {
@@ -100,3 +82,14 @@ if(location.search.length === 0) {
 		window.history.replaceState(null, null, location.search + "#" + `index=${index}${shuffle ? "&shuffle" : ""}`);
 	}
 }
+
+document.querySelector(".header p")?.addEventListener("click", e => {
+	// reverse list
+	const images = Array.from(document.querySelectorAll(".imageRowContainer .box"));
+	images.reverse();
+	const parent = document.querySelector(".imageRowContainer");
+	images.forEach(image => {
+		parent.append(image);
+	});
+
+})
